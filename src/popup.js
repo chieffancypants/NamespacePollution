@@ -6,7 +6,11 @@
 			table = document.getElementById('pollution-body');
 			response.pollution.forEach(function(obj, idx) {
 				tr = document.createElement('tr');
-				tr.innerHTML = '<td>' + (idx+1) + '</td><td>' + obj.name + '</td><td>' + obj.type + '</td>';
+				name = obj.name;
+				if (name.length > 30) {
+					name = name.substr(0,30) + ' ...';
+				}
+				tr.innerHTML = '<td>' + (idx+1) + '</td><td fulldata="' + obj.name + '">' + name + '</td><td>' + obj.type + '</td>';
 				table.appendChild(tr);
 			});
 		});
@@ -16,10 +20,8 @@
 		var el = event.target;
 		if (el.nodeName = 'TD') {
 			chrome.tabs.getSelected(null, function(tab) {
-				chrome.tabs.sendMessage(tab.id, {name:'console', obj: el.innerText});
+				chrome.tabs.sendMessage(tab.id, {name:'console', obj: el.getAttribute('fulldata')} );
 			});
-			// chrome.extension.sendMessage({name: 'console', object: el.innerText});
-			console.log(el.innerText);
 		}
 	};
 
