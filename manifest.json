@@ -21,7 +21,7 @@
   },
 
   "background": {
-    "scripts": ["src/eventPage.js"]
+    "scripts": ["src/background.js"]
   },
 
   // http://code.google.com/chrome/extensions/pageAction.html

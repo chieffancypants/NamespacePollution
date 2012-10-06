@@ -14,12 +14,9 @@
 
 	allKeys.forEach(function(obj, idx) {
 		if (knownObjects.indexOf(obj) == -1) {
-			console.log ('in here', obj);
-			pollution.push(obj);
+			pollution.push({name: obj, type: typeof window[obj]});
 		}
 	});
-
-	console.log(pollution);
 
 	var jsonString = JSON.stringify(pollution);
 	var meta = document.getElementById('ns-pollution');
@@ -29,4 +26,13 @@
 	var done = document.createEvent('Event');
 	done.initEvent('ready', true, true);
 	meta.dispatchEvent(done);
+
+	window.addEventListener("message", function(event) {
+		// We only accept messages from ourselves
+		if (event.source != window)
+		  return;
+
+		console.log(event.data.obj + ':', window[event.data.obj]);
+	});
+
 })();

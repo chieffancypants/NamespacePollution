@@ -1,33 +1,3 @@
-// alert('done loading...');
-// knownObjects = [
-// 	'top',
-// 	'location',
-// 	'window',
-// 	'external',
-// 	'chrome',
-// 	'v8Locale',
-// 	'document'
-// ];
-
-// pollution = Object.keys(window);
-// console.log(pollution);
-
-// chrome.extension.sendMessage({name: 'pollution', pollution: pollution}, function(response) {
-// 	console.log(response.farewell);
-// });
-
-
-// chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-// 	alert('hi');
-// 	console.log (request);
-
-// });
-
-// document.addEventListener('load', function () {
-// 	console.log('loaded');
-// 	alert('loaded');
-// });
-
 
 (function(){
 	var head = document.getElementsByTagName('head')[0];
@@ -42,6 +12,11 @@
 		meta.name = 'ns-pollution';
 		meta.id = 'ns-pollution';
 		head.appendChild(meta);
+
+		var metaConsole = document.createElement('meta');
+		metaConsole.name = 'ns-pollution-console';
+		metaConsole.id = 'ns-pollution-console';
+		head.appendChild(metaConsole);
 	}
 
 	meta.addEventListener('ready', function() {
@@ -53,5 +28,13 @@
 		}
 	});
 
+
+
+
+	chrome.extension.onMessage.addListener(function (message, sender, sendResp) {
+		if (message.name == 'console') {
+			window.postMessage(message, "*");
+		}
+	});
 
 })();
