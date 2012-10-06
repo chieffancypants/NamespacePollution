@@ -63,27 +63,30 @@
 
 			defaults.color = convertToColor(percentage / 100);
 
-			// Draw Text
-			context.font = 'bold 10px arial';
-			context.textAlign = "center";
-			context.textBaseline = "top";
-			context.shadowColor = '#666';
-			context.shadowOffsetX = 1;
-			context.shadowOffsetY = 1;
-			context.shadowBlur = 0;
-			context.strokeStyle = 'black';
-			context.fillStyle = defaults.color
-			context.maxWidth = 12;
-			console.log(context.fillStyle);
-			context.strokeText(percentage, canvas.width / 2, 1, canvas.width);
-			context.fillText(percentage, canvas.width / 2, 1, canvas.width);
-
 			// Draw bar
 			var width = (percentage * canvas.width) / 100;
 			context.fillStyle = '#999';
 			context.fillRect(0, 12, 16, 4);
 			context.fillStyle = defaults.color;
 			context.fillRect(1, 13, width, 2);
+
+			// Draw Text
+			context.font = 'bold 10px arial';
+			context.textAlign = "center";
+			context.textBaseline = "top";
+			context.fillStyle = defaults.color
+			context.maxWidth = 12;
+			console.log(context.fillStyle);
+			// Put a shadow on the number if it's a light color
+			if (percentage < 63) {
+				context.shadowColor = '#666';
+				context.shadowOffsetX = 1;
+				context.shadowOffsetY = 1;
+				context.shadowBlur = 0;
+				context.strokeStyle = 'black';
+				context.strokeText(percentage, canvas.width / 2, 1, canvas.width);
+			}
+			context.fillText(percentage, canvas.width / 2, 1, canvas.width);
 
 			return canvas.toDataURL();
 		}
