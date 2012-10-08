@@ -32,8 +32,7 @@
 		if (event.source != window || event.data.name != 'console')
 		  return;
 
-		console.log(event);
-		// console.log(event.data.obj + ':', window[event.data.obj]);
+		console.log(event.data.obj + ':', window[event.data.obj]);
 	}, false);
 
 })();
