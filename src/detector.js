@@ -29,10 +29,11 @@
 
 	window.addEventListener("message", function(event) {
 		// We only accept messages from ourselves
-		if (event.source != window)
+		if (event.source != window || event.data.name != 'console')
 		  return;
 
-		console.log(event.data.obj + ':', window[event.data.obj]);
-	});
+		console.log(event);
+		// console.log(event.data.obj + ':', window[event.data.obj]);
+	}, false);
 
 })();
