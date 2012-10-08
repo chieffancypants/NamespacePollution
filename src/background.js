@@ -14,6 +14,7 @@
 				console.log('Saving pollution:', message.pollution, sender)
 				tabs[sender.tab.id] = message.pollution;
 				chrome.pageAction.setIcon({path: drawFavicon(message.pollution.length), tabId: sender.tab.id});
+				chrome.pageAction.show(sender.tab.id);
 				break;
 			case 'getPollution':
 				console.log('sending response: ', tabs[message.tabId], message.tabId);
@@ -25,15 +26,6 @@
 		}
 	});
 
-	
-	// Place the pageAction icon on each tab
-	function showPageAction(tabId, changeInfo, tab) {
-		chrome.pageAction.show(tabId);
-	};
-	chrome.tabs.onUpdated.addListener(showPageAction);
-
-
-	var Piecon = {};
 
 	var canvas = null;
 	var defaults = {
