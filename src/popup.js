@@ -4,6 +4,19 @@
 		chrome.extension.sendMessage({name: 'getPollution', tabId: tab.id}, function(response) {
 			title = document.getElementsByClassName('title')[0].innerHTML = '<strong>' + response.pollution.length + ' objects </strong><small>polluting the global namespace:</small>';
 			table = document.getElementById('pollution-body');
+
+			// Alphabetize, son.
+			response.pollution.sort(function(a,b) {
+				var cmp = a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+				if (cmp > 0) {
+					return 1;
+				} else if (cmp < 0) {
+					return -1;
+				}
+				return 0;
+			});
+
+
 			response.pollution.forEach(function(obj, idx) {
 				tr = document.createElement('tr');
 				tr.setAttribute('fulldata', obj.name);
