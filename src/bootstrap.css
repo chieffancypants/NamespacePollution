@@ -877,3 +877,16 @@ input[type="submit"].btn.btn-mini {
 table {
   font-size: 12px;
 }
+
+table td {
+  cursor: pointer;
+}
+
+#pollution-table tr.consoled {
+  transition: background-color 1s linear;
+  -webkit-transition: background-color 1s linear;
+  background-color: orange;
+}
+#pollution-table tr.consoled:hover, #pollution-table tr.consoled td:hover {
+  background-color: #ff9900;
+}

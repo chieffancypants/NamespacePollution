@@ -36,6 +36,7 @@
 			chrome.tabs.getSelected(null, function(tab) {
 				chrome.tabs.sendMessage(tab.id, {name:'console', obj: el.parentNode.getAttribute('fulldata')} );
 			});
+			el.parentNode.className = 'consoled';
 		}
 	};
 
