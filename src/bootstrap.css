@@ -883,10 +883,11 @@ table td {
 }
 
 #pollution-table tr.consoled {
-  transition: background-color 1s linear;
-  -webkit-transition: background-color 1s linear;
-  background-color: orange;
+  background-color: #fff3d1;
 }
-#pollution-table tr.consoled:hover, #pollution-table tr.consoled td:hover {
-  background-color: #ff9900;
+.table-hover tbody tr.consoled:hover td,
+.table-hover tbody tr.consoled:hover th {
+  transition: background-color 0.25s linear;
+  -webkit-transition: background-color 0.25s linear;
+  background-color: #eeddbb;
 }
