@@ -1,41 +1,39 @@
 {
-    "name": "Global Namespace Pollution",
-    "version": "0.1",
-    "description": "Detects and graphs the global namespace pollution",
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "default_locale": "en",
-    "page_action": {
-        "default_icon": "icons/icon19.png",
-        "default_title": "View Namespace Pollution",
-        "default_popup": "src/popup.html"
-    },
-    "background": {
-        "scripts": [
-            "src/background.js"
-        ]
-    },
-    "permissions": [
-        "chrome://favicon/",
-        "idle",
-        "notifications",
-        "tabs",
-        "http://*/*",
-        "https://*/*"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "http://*/*",
-                "https://*/*"
-            ],
-            "js": [
-                "src/content_script.js"
-            ]
-        }
-    ],
-    "null": []
+	"name"                     : "Global Namespace Pollution",
+	"manifest_version"         : 2,
+	"version"                  : "0.2",
+	"description"              : "Detects and graphs the global namespace pollution",
+	"default_locale"           : "en",
+	"web_accessible_resources" : [ "src/detector.js" ],
+	
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"page_action": {
+		"default_icon": "icons/icon19.png",
+		"default_title": "View Namespace Pollution",
+		"default_popup": "src/popup.html"
+	},
+	"background": {
+		"page": "src/background.html"
+	},
+	"permissions": [
+		"chrome://favicon/",
+		"idle",
+		"notifications",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	],
+	"content_scripts": [
+		{
+			"matches": [ "http://*/*", "https://*/*" ],
+			"js": [ "src/content_script.js" ]
+		}
+	],
+
+	// ignore previous trailing commas:
+	"null": []
 }
