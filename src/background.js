@@ -54,10 +54,14 @@
 
 			defaults.color = convertToColor(percentage / 100);
 
-			// Draw bar
-			var width = (percentage * canvas.width) / 100;
-			context.fillStyle = '#999';
+			// Draw bar BG
+			context.fillStyle = '#000';
 			context.fillRect(0, 12, 16, 4);
+			context.fillStyle = '#fff';
+			context.fillRect(1, 13, 14, 2);
+
+			// Draw bar FG
+			var width = (percentage * canvas.width) / 100;
 			context.fillStyle = defaults.color;
 			context.fillRect(1, 13, width, 2);
 
@@ -67,12 +71,14 @@
 			context.textBaseline = "top";
 			context.fillStyle = defaults.color
 			context.maxWidth = 12;
+
 			// Put a shadow on the number if it's a light color
 			if (percentage < 63) {
-				context.shadowColor = '#666';
-				context.shadowOffsetX = 1;
-				context.shadowOffsetY = 1;
-				context.shadowBlur = 0;
+				// context.shadowColor = '#666';
+				// context.shadowOffsetX = 1;
+				// context.shadowOffsetY = 1;
+				// context.shadowBlur = 0;
+				context.lineWidth = 2;
 				context.strokeStyle = 'black';
 				context.strokeText(percentage, canvas.width / 2, 1, canvas.width);
 			}
