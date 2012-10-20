@@ -8,9 +8,8 @@
 		// Remove the contents of the table:
 		table.innerHTML = '';
 
-
 		pollution.forEach(function(obj, idx) {
-			if (obj.name.toLowerCase().indexOf(filter) > -1 || !filter) {
+			if (!filter || obj.name.toLowerCase().indexOf(filter) > -1) {
 				tr = document.createElement('tr');
 				tr.setAttribute('fulldata', obj.name);
 				name = obj.name;
@@ -55,8 +54,7 @@
 		}
 	};
 
-	filter = document.getElementById('filter-input');
-	filter.onkeyup = function (event) {
+	document.getElementById('filter-input').onkeyup = function (event) {
 		populateTable(this.value);
 	}
 
