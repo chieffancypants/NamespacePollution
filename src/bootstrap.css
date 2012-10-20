@@ -250,3 +250,6 @@ table td {
   -webkit-transition: background-color 0.25s linear;
   background-color: #eeddbb;
 }
+#filter-input {
+  width: 100%;
+}

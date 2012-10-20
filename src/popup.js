@@ -1,23 +1,16 @@
 (function(){
 
-	chrome.tabs.getSelected(null, function(tab) {
-		chrome.extension.sendMessage({name: 'getPollution', tabId: tab.id}, function(response) {
-			title = document.getElementsByClassName('title')[0].innerHTML = '<strong>' + response.pollution.length + ' objects </strong><small>polluting the global namespace:</small>';
-			table = document.getElementById('pollution-body');
+	var populateTable = function(filter) {
+		title = document.getElementsByClassName('title')[0].innerHTML = '<strong>' + pollution.length + ' objects </strong><small>polluting the global namespace:</small>';
+		table = document.getElementById('pollution-body');
+		filter = filter && filter.toLowerCase();
 
-			// Alphabetize, son.
-			response.pollution.sort(function(a,b) {
-				var cmp = a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-				if (cmp > 0) {
-					return 1;
-				} else if (cmp < 0) {
-					return -1;
-				}
-				return 0;
-			});
+		// Remove the contents of the table:
+		table.innerHTML = '';
 
 
-			response.pollution.forEach(function(obj, idx) {
+		pollution.forEach(function(obj, idx) {
+			if (obj.name.toLowerCase().indexOf(filter) > -1 || !filter) {
 				tr = document.createElement('tr');
 				tr.setAttribute('fulldata', obj.name);
 				name = obj.name;
@@ -26,7 +19,29 @@
 				}
 				tr.innerHTML = '<td>' + (idx+1) + '</td><td>' + name + '</td><td>' + obj.type + '</td>';
 				table.appendChild(tr);
+			}
+		});
+
+	}
+
+	chrome.tabs.getSelected(null, function(tab) {
+		chrome.extension.sendMessage({name: 'getPollution', tabId: tab.id}, function(response) {
+			// Attache the pollution list to window:
+			pollution = response.pollution;
+
+			// Alphabetize, son.
+			pollution.sort(function(a,b) {
+				var cmp = a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+				if (cmp > 0) {
+					return 1;
+				} else if (cmp < 0) {
+					return -1;
+				}
+				return 0;
 			});
+			
+			populateTable();
+			
 		});
 	});
 
@@ -40,5 +55,9 @@
 		}
 	};
 
+	filter = document.getElementById('filter-input');
+	filter.onkeyup = function (event) {
+		populateTable(this.value);
+	}
 
 })();
