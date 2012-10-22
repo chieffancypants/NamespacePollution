@@ -11,7 +11,6 @@
 	chrome.extension.onMessage.addListener(function (message, sender, sendResp) {
 		switch(message.name) {
 			case 'pollution':
-				console.log('Saving pollution:', message.pollution, sender)
 				tabs[sender.tab.id] = message.pollution;
 				chrome.pageAction.setIcon({path: drawFavicon(message.pollution.length), tabId: sender.tab.id});
 				chrome.pageAction.show(sender.tab.id);
@@ -68,7 +67,6 @@
 			context.textBaseline = "top";
 			context.fillStyle = defaults.color
 			context.maxWidth = 12;
-			console.log(context.fillStyle);
 			// Put a shadow on the number if it's a light color
 			if (percentage < 63) {
 				context.shadowColor = '#666';
