@@ -32,7 +32,4 @@
 			"js": [ "src/content_script.js" ]
 		}
 	],
-
-	// ignore previous trailing commas:
-	"null": []
 }
