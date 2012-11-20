@@ -6,6 +6,7 @@
 		'external',
 		'chrome',
 		'v8Locale',
+		'v8Intl',
 		'document'
 	];
 
