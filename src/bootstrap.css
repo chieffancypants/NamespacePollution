@@ -279,15 +279,32 @@ table {
 table td {
   cursor: pointer;
 }
-#pollution-table tr.consoled {
+#pollution-table tr.consoled, div.click-text {
   background-color: #fff3d1;
 }
 .table-hover tbody tr.consoled:hover td,
-.table-hover tbody tr.consoled:hover th {
-  transition: background-color 0.25s linear;
-  -webkit-transition: background-color 0.25s linear;
-  background-color: #eeddbb;
+.table-hover tbody tr.consoled:hover th, div.click-text:hover {
+  background-color: #fff3d1;
 }
 #filter-input {
   width: 100%;
+}
+
+div.click-text {
+  position: absolute;
+  left: 49px;
+  width: 282px;
+  display:inline-block;
+  opacity: 1;
+  height: 24px;
+}
+
+
+div.click-text.hidden {
+  opacity: 0;
+  transition: 1s;
+  -webkit-transition: 1s;
+
+  transition-delay: 3s;
+  -webkit-transition-delay: 3s;
 }
