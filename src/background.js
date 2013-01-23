@@ -55,7 +55,7 @@
 			defaults.color = convertToColor(percentage / 100);
 
 			// Draw bar BG
-			context.fillStyle = '#000';
+			context.fillStyle = '#333';
 			context.fillRect(0, 12, 16, 4);
 			context.fillStyle = '#fff';
 			context.fillRect(1, 13, 14, 2);
@@ -79,7 +79,7 @@
 				// context.shadowOffsetY = 1;
 				// context.shadowBlur = 0;
 				context.lineWidth = 2;
-				context.strokeStyle = 'black';
+				context.strokeStyle = '#333';
 				context.strokeText(percentage, canvas.width / 2, 1, canvas.width);
 			}
 			context.fillText(percentage, canvas.width / 2, 1, canvas.width);
