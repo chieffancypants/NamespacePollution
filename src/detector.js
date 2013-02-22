@@ -7,7 +7,8 @@
 		'chrome',
 		'v8Locale',
 		'v8Intl',
-		'document'
+		'document',
+		'Intl'
 	];
 
 	var pollution = [],
