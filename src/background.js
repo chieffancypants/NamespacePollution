@@ -74,9 +74,9 @@
 				context.shadowOffsetY = 1;
 				context.shadowBlur = 0;
 				context.strokeStyle = 'black';
-				context.strokeText(percentage, canvas.width / 2, 1, canvas.width);
+				context.strokeText(percentage, canvas.width / 2, 0, canvas.width);
 			}
-			context.fillText(percentage, canvas.width / 2, 1, canvas.width);
+			context.fillText(percentage, canvas.width / 2, 0, canvas.width);
 
 			return canvas.toDataURL();
 		}
