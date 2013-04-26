@@ -1,7 +1,7 @@
 {
 	"name"                     : "Global Namespace Pollution",
 	"manifest_version"         : 2,
-	"version"                  : "0.3",
+	"version"                  : "0.4",
 	"description"              : "Detects and graphs the global namespace pollution",
 	"default_locale"           : "en",
 	"web_accessible_resources" : [ "src/detector.js" ],
